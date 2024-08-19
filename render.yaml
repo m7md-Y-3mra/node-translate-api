@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: my-proxy-server
+    env: node
+    buildCommand: npm install && npm run build # Only if you have a build script
+    startCommand: node index.js
+    plan: free
