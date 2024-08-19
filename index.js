@@ -1,11 +1,19 @@
 const express = require("express");
+const cors = require("cors");
 const { translate } = require("@vitalets/google-translate-api");
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 app.use(express.json());
 
 app.post("/translate", (req, res) => {
   const { text, from, to } = req.body;
+
+  if (!text || !from || !to) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
 
   // Perform the translation
   translate(text, { from, to })
