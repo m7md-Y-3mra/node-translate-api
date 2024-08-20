@@ -59,7 +59,7 @@ app.use(express.json());
 const agent = new HttpProxyAgent("http://181.41.194.186:80");
 
 // Function to perform translation with retry logic
-const retryTranslation = (text, from, to, retries = 3) => {
+const retryTranslation = (text, from, to, retries = 20) => {
   return translate(text, { from, to, fetchOptions: { agent } })
     .then((response) => {
       return response.text;
