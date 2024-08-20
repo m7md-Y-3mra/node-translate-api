@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { translate } = require("@vitalets/google-translate-api");
+const { HttpProxyAgent } = require("http-proxy-agent");
 const app = express();
 
 // Enable CORS for all routes
@@ -12,6 +13,9 @@ app.use(
 
 app.use(express.json());
 
+// Configure proxy agent
+const agent = new HttpProxyAgent("http://103.152.112.162:80");
+
 app.post("/translate", (req, res) => {
   const { text, from, to } = req.body;
 
@@ -19,8 +23,8 @@ app.post("/translate", (req, res) => {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // Perform the translation
-  translate(text, { from, to })
+  // Perform the translation using the proxy agent
+  translate(text, { from, to, fetchOptions: { agent } })
     .then((response) => {
       // Send the translated text as response
       res.status(200).json({ translatedText: response.text });
