@@ -18,14 +18,6 @@ app.post("/translate", (req, res) => {
   // Perform the translation
   translate(text, { from, to })
     .then((response) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Credentials", "true");
-      res.setHeader("Access-Control-Max-Age", "1800");
-      res.setHeader("Access-Control-Allow-Headers", "content-type");
-      res.setHeader(
-        "Access-Control-Allow-Methods",
-        "PUT, POST, GET, DELETE, PATCH, OPTIONS"
-      );
       // Send the translated text as response
       res.status(200).json({ translatedText: response.text });
     })
