@@ -14,7 +14,7 @@ app.use(
 app.use(express.json());
 
 // Configure proxy agent
-const agent = new HttpProxyAgent("http://103.152.112.162:80");
+const agent = new HttpProxyAgent("http://47.252.29.28:11222");
 
 app.post("/translate", (req, res) => {
   const { text, from, to } = req.body;
