@@ -4,7 +4,11 @@ const { translate } = require("@vitalets/google-translate-api");
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(express.json());
 
