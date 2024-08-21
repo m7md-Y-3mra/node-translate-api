@@ -116,12 +116,16 @@ app.use(express.json());
 
 // List of proxy servers
 // 116.203.28.43
+// const proxyList = [
+//   "http://116.203.28.43:80",
+//   "http://35.210.106.5:80",
+//   "http://181.41.194.186:80",
+//   "http://135.148.100.78:48149",
+//   "http://162.214.165.203:80",
+// ];
 const proxyList = [
+  "https://cors-anywhere-rqwp.onrender.com",
   "http://116.203.28.43:80",
-  "http://35.210.106.5:80",
-  "http://181.41.194.186:80",
-  "http://135.148.100.78:48149",
-  "http://162.214.165.203:80",
 ];
 
 // Function to perform translation with retry logic and multiple proxies
